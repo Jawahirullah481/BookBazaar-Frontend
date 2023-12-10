@@ -1,0 +1,74 @@
+### REACT APP :
+
+
+## Context Information : 
+=======================
+1. isAuthenticated
+2. username
+3. userid
+4. email
+5. access to login
+6. access to logout
+
+
+
+## User URLs :
+==============
+1. /login
+2. /signup
+    UserComponent
+        3. /home
+        4. /search/:searchQuery
+        5. /view-book/:isbn
+        6. /cart
+        7. /orders
+        8. /favourites
+        9. /profile
+        10. /buy
+
+
+## Admin URLs :
+===============
+1. /admin/login
+2. /admin/books
+3. /admin/users
+4. /admin/orders
+5. /admin/account
+6. /admin/add-book
+
+json-server --watch src/bookbazaar/json/home1.json --port 3030
+https://books.google.com/books/publisher/content/images/frontcover/\(bookImgId)?fife=w400-h600&source=gbs_api
+
+### SPRING BOOT API : 
+=====================
+Home Page :
+==========
+1. /books
+2. /books?searchQuery=<searchQuery>
+3. /books?searchQuery=<searchQuery>&author=<author>&category=<category>
+
+## User API URLs :
+==================
+
+
+
+
+Changes in REST API :
+==================
+1. If quantity in cart greater than book stock, then reduce the cart quantity to book stock quantity.
+2. Change is mobileNo to phone, and passwordSize to be removed.
+
+"@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"

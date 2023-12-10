@@ -1,0 +1,195 @@
+@import url("./general.css");
+
+.UserLogin, .UserSignup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F4F7FC;;
+}
+
+.form-holder {
+    width: auto;
+    height: 360px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.20);
+    overflow: hidden;
+    background: #F4F7FC;
+}
+
+.form-holder .side-card {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: radial-gradient(49.88% 49.88% at 49.86% 46.83%, #3E3E3E 0%, #1E1E1E 100%);
+    color: white;
+}
+
+.form-holder .side-card .heading {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.form-holder .side-card .heading h1 {
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.form-holder .side-card .heading p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form-holder .side-card-image {
+    width: 85%;
+    height: fit-content;
+}
+
+.form-holder .side-card-image img {
+    width: 100%;
+}
+
+.form-holder .form {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 100%;
+    padding: 20px !important;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    background: #FFF;
+}
+
+.form-holder .form .heading {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-holder .form .heading h1 {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.form-holder .form .heading p {
+    color: #959595;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.form-holder .form .form-element-holder {
+    width: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 6px;
+}
+
+.form-holder .form .form-element-holder .tf-holder {
+    display: flex;
+    width: 100%;
+    height: 26px;
+    border: 1px solid rgb(99, 99, 107);
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.form-holder .form .form-element-holder .tf-holder input {
+    width: calc(100% - 26px);
+    height: 26px;
+    padding: 7px 10px;
+    font-size: 14px;
+    border-radius: 0px;
+    border: none;
+    outline: 0;
+    font-family: 'poppins', sans-serif;
+}
+
+.form-holder .form .form-element-holder .tf-holder input::placeholder {
+    font-size: 12px;
+    font-family: 'poppins', sans-serif;
+    font-weight: 300;
+    color: rgb(63, 63, 65);
+}
+
+.form-holder .form .form-element-holder .tf-holder .tf-icon-holder {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-black);
+}
+
+.form-holder .form .form-element-holder .tf-holder .tf-icon-holder .tf-icon {
+    width: 15px;
+    color: white;
+}
+
+.form-element-holder .btn {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'poppins', sans-serif;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
+.form-element-holder .btn:hover {
+    scale: 1.015;
+}
+
+.form-element-holder .btn-border {
+    border: 1px solid var(--clr-black);
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+}
+
+.form-element-holder .btn.w-100 {
+    width: 100%;
+}
+
+.form-holder .form .form-element-holder .redirect-link {
+    color: var(--clr-orange);
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.form-holder .form .form-element-holder .redirect-link:hover {
+    text-decoration: underline;
+}
+
+.form-holder .form .error-message {
+    font-size: 11px;
+    color: var(--clr-red);
+}
+

@@ -1,0 +1,725 @@
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-black: #1D1D1D;
+    --clr-orange: #E27800;
+    --clr-red: #FF2F2F;
+    --clr-bg: #F1F2F4;
+}
+
+body {
+    width: 100vw;
+    height: auto;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--clr-bg);
+}
+
+.BookBazaar {
+    width: 100vw;
+    height: auto;
+    background: var(--clr-bg);
+}
+
+.btn {
+    color: white;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    font-family: 'poppins', sans-serif;
+}
+
+.btn-black {
+    background-color: var(--clr-black);
+}
+
+.btn-orange {
+    background-color: var(--clr-orange);
+}
+
+.btn-red {
+    background-color: var(--clr-red);
+}
+
+.btn-green {
+    background-color: green;
+}
+
+.btn:disabled {
+    cursor: no-drop;
+}
+
+.btn-orange-disabled:hover {
+    text-decoration: none;
+    border: none;
+}
+
+.btn-red:hover {
+    border: none;
+}
+
+.btn-border-black {
+    border: 1px solid var(--clr-black);
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+}
+
+.btn-border-black:hover {
+    border: 2px solid black;
+}
+
+/* ----------Header Component ------------ */
+
+.HeaderComponent {
+    width: 100%;
+    height: 65px;
+    background: var(--clr-black);
+    box-shadow: 0px 4px 4px 0px rgba(117, 117, 117, 0.30);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    transition: top .3s;
+    padding: 0 25px 0 50px;
+    column-gap: 25px;
+    z-index: 3;
+}
+
+.HeaderComponent .logo {
+    font-family: 'Kavoon', serif;
+    font-size: 32px;
+}
+
+.HeaderComponent .search-bar {
+    width: 265px;
+    height: 27px;
+    display: flex;
+    align-content: stretch;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.HeaderComponent .search-bar input {
+    width: calc(265px - 27px);
+    background: #FFF;
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    padding: 0 10px;
+    font-size: 13px;
+    font-family: 'poppins', sans-serif;
+}
+
+.HeaderComponent .search-bar input::placeholder {
+    color: #808080;
+}
+
+.HeaderComponent .search-bar .search-icon-holder {
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6659FF;
+}
+
+.HeaderComponent .search-bar .search-icon-holder .search-icon {
+    width: 15px;
+}
+
+.HeaderComponent .menu {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.HeaderComponent .menu ul {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    column-gap: 30px;
+}
+
+.HeaderComponent .menu ul li {
+    font-family: "poppins", sans-serif;
+    font-size: 15px;
+    list-style-type: none;
+    width: fit-content;
+    height: 23px;
+    transition: border-color .15s;
+}
+
+.HeaderComponent .menu ul li:not(.btn-link):hover > *{
+    border-bottom: 1.5px solid rgb(255, 255, 255);
+    color: rgb(216, 219, 226);
+}
+
+.HeaderComponent .menu ul li .link-item {
+    color: white;
+    text-decoration: none;
+}
+
+.HeaderComponent .btn-white {
+    padding: 5px 12px;
+    background-color: white;
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: all .15s;
+}
+
+.HeaderComponent .btn-white:hover {
+    background-color: transparent;
+    color: white !important;
+    box-shadow: none;
+    box-shadow: 0 0 2px rgba(255, 255, 255);
+    text-decoration: none;
+}
+
+.view {
+    top: 0;
+}
+
+.hide {
+    top: -90px;
+}
+
+
+/* -------------- User Content --------------- */
+
+.UserContent {
+    margin-top: 75px;
+    width: 100vw;
+    height: auto;
+    padding: 0 20px 20px 20px;
+}
+
+
+/* ------------ Home Component --------------- */
+
+.Home {
+    width: 100%;
+    padding: 0 0px;
+    height: auto;
+}
+
+.Home .banner {
+    width: 750px;
+    height: 250px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.Home .banner img {
+    width: 100%;
+    height: 100%;
+}
+
+.BooksCategoryHolder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 25px 10px;
+}
+
+.BooksCategoryHolder h2 {
+    margin-left: 30px;
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #282828;
+    text-transform: capitalize;
+}
+
+.BooksCategoryHolder .books-holder {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 55px 40px;
+}
+
+.BooksCategoryHolder .books-holder .book-card {
+    width: 180px;
+    padding-bottom: 12px;
+    border-radius: 7px;
+    border: 0px solid #EBEDFF;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.BooksCategoryHolder .books-holder .book-card:hover {
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.BooksCategoryHolder .books-holder .book-card .book-image-holder {
+    width: 100%;
+    height: 115px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #EBEDFF;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(242deg, #1C1C1C 7.21%, #6E6E6E 100%);
+}
+
+.BooksCategoryHolder .books-holder .book-card img {
+    display: block;
+    height: 90%;
+    min-width: 70px;
+    margin: auto;
+    border: 1px solid rgb(210, 210, 210);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, .25);
+    background-image: url("https://islandpress.org/sites/default/files/default_book_cover_2015.jpg");
+    background-size: cover;
+    border-radius: 3px;
+}
+
+.Rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 3px;
+}
+
+.BooksCategoryHolder .books-holder .book-card .Rating {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.BooksCategoryHolder .books-holder .book-card .Rating .rating-star {
+    width: 12px;
+    height: 12px;
+}
+
+.BooksCategoryHolder .books-holder .book-card .book-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.BooksCategoryHolder .books-holder .book-card .author {
+    color: #a09999;
+    font-size: 11px;
+    font-weight: 500;
+    text-decoration-line: underline;
+    margin: auto;
+    margin-bottom: 12px;
+    text-align: center;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 120%;
+}
+
+.BooksCategoryHolder .books-holder .book-card .book-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92px;
+    border-radius: 13px;
+    background: #C3DC28;
+    margin: auto;
+    margin-bottom: 16px;
+}
+
+.BooksCategoryHolder .books-holder .book-card .book-price p {
+    color: #1A871E;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.BooksCategoryHolder .books-holder .book-card .btn {
+    display: block;
+    width: 85%;
+    font-size: 13px;
+    padding: 2.5px 10px;
+    margin: auto;
+    transition-property: background-color;
+    transition-duration: .1s;
+    transform-origin: 50% 50%;
+    text-decoration: none;
+}
+
+.BooksCategoryHolder .books-holder .book-card .btn:hover {
+    text-decoration: underline;
+}
+
+.rupee-symbol {
+    color: black;
+    font-family: sans-serif;
+    margin-right: 2px;
+}
+
+
+/* ----------------- View Book -------------- */
+
+.ViewBook, .Favourite, .Cart, .Orders, .Profile, .Buy {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 25px;
+    padding: 0px 10px;
+    margin: auto;
+}
+
+.ViewBook h1, .Favourite h1, .Cart h1, .Orders h1, .Profile h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: start;
+    color: #303030;
+    width: 100%;
+    text-align: start;
+}
+
+.ViewBook .book-details-holder {
+    display: flex;
+    column-gap: 10px;
+    border-radius: 5px;
+}
+
+.ViewBook .book-details-holder .book-image {
+    width: fit-content;
+    height: 285px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.ViewBook .book-details-holder .book-image img {
+    width: auto;
+    height: 100%;
+}
+
+.ViewBook .book-details-holder .book-image .heart-icon-holder {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.ViewBook .book-details-holder .book-image .heart-icon {
+    width: 13px;
+    transform: translate(-.25px, .5px);
+}
+
+.ViewBook .book-details-holder .book-details {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.ViewBook .book-details-holder .book-details h2 {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 100%;
+    color: #000;
+}
+
+.ViewBook .book-details-holder .book-details .author {
+    color: #7a7a7a;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.ViewBook .book-details-holder .book-details .description {
+    font-size: 12px;
+    color: var(--clr-black);
+    line-height: 150%;
+    text-align: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+}
+
+.ViewBook .book-details-holder .book-details .book-price {
+    font-size: 32px;
+    font-weight: 500;
+    color: #000;
+}
+
+.ViewBook .book-details-holder .book-details .Rating {
+    margin-bottom: 5px;
+}
+
+.ViewBook .book-details-holder .book-details .Rating .rating-star {
+    width: 15px;
+}
+
+.ViewBook .book-details-holder .book-details .stock {
+    font-size: 10px;
+    color: #4f4f4f;
+    margin-bottom: 10px;
+}
+
+.ViewBook .book-details-holder .book-details .btn {
+    margin-bottom: 4px;
+    width: 180px;
+    padding: 3.5px 10px;
+    border: 1px solid transparent;
+}
+
+.ViewBook .book-details-holder .book-details .btn:hover {
+    scale: 1.01;
+}
+
+
+
+/* -----------------Favourites --------------- */
+
+.favourite-holder, .cart-holder, .order-holder {
+    width: 100%;
+}
+
+/* -------------------Profile ---------------- */
+
+.Profile {
+    row-gap: 10px;
+}
+
+.Profile h1 {
+    font-size: 21px;
+    margin: auto;
+    text-align: center;
+}
+
+.Profile .profile-holder {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.15);
+    row-gap: 0;
+}
+
+.Profile .profile-holder .account-holder {
+    display: flex;
+    column-gap: 10px;
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(203, 207, 218);
+}
+
+.Profile .profile-holder .account-holder .profile-img-holder {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5px;
+    height: 100%;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Profile .profile-holder .profile-img-holder .profile-img {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1D1D1D;
+    border-radius: 50%;
+    font-size: 40px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.Profile .profile-holder .profile-img-holder .profile-username {
+    color: #5F6264;
+    font-size: 12px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Profile .profile-holder .account-details-holder {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.Profile .profile-holder .TextField {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 2px;
+}
+
+.Profile .profile-holder .TextField label {
+    font-size: 12px;
+    color: #1D1D1D;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.Profile .profile-holder .TextField input {
+    padding: 0 7px;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid #BABED5;
+    outline: none;
+    font-size: 11px;
+    color: rgb(129, 132, 143);
+    width: 100%;
+    font-family: 'poppins', sans-serif;
+    font-weight: 400;
+}
+
+.Profile .profile-holder .address-holder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    padding: 10px 0px;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-30 {
+    width: calc(31%);
+}
+
+.Profile .profile-holder .btn {
+    display: block;
+    margin: auto;
+    width: fit-content;
+    height: 24px;
+    padding: 0 20px;
+    font-size: 12px;
+}
+
+.Profile .error-msg {
+    font-size: 11px;
+    color: var(--clr-red);
+    margin-bottom: 10px;
+}
+
+/* -------------- Buy ------------------ */
+
+.Buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+}
+
+.Buy .invoice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    row-gap: 8px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.20);
+}
+
+.Buy .invoice h1 {
+    color: #2A2935;
+    font-family: 'poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.Buy .invoice table td, .Buy .invoice table th {
+    text-align: start;
+}
+
+.Buy .invoice table thead, .Buy .invoice table tbody, .Buy .invoice table tfoot {
+    display: block;
+    padding: 5px 0;
+}
+
+.Buy .invoice table tr *:first-child {
+    width: 225px;
+}
+
+.Buy .invoice table thead tr th, .Buy .invoice table tfoot tr td {
+        color: #2A2935;
+        font-size: 15px;
+        font-weight: 500;
+        font-family: 'poppins', sans-serif;
+}
+
+.Buy .invoice table tbody {
+    border-bottom: 1px solid #c0c0c0;
+    border-top: 1px solid #c0c0c0;
+    font-size: 12px;
+    display: block;
+    padding: 10px 0;
+    min-height: 120px;
+    color: #2A2935;
+}
+
+.Buy .invoice table tbody tr .book-name {
+    width: 225px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.Buy .invoice .btn {
+    width: fit-content;
+    padding: 0px 25px;
+    display: block;
+}

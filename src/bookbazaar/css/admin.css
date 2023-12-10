@@ -1,0 +1,565 @@
+@import url("general.css");
+
+.AdminWrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.AdminComponent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.AdminComponent .AdminLogin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AdminComponent .AdminLogin .form-holder {
+    height: fit-content;
+}
+
+/* -------------- Header ----------- */
+
+.AdminHeader {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 20, 0.08), 0px 1px 2px 0px rgba(0, 0, 20, 0.08);
+}
+
+/* ------------- Side Menu --------------- */
+
+.SideMenu {
+    width: 175px;
+    height: calc(100% - 38px);
+    position: fixed;
+    left: 0;
+    top: 38px;
+    padding: 20px 4px;
+    background: #192655;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    row-gap: 10px;
+    border-right: 1px solid rgba(71, 85, 105, 0.15);
+    color: white;
+}
+
+.SideMenu .logo {
+    font-family: 'Kavoon', serif;
+    font-size: 20px;
+    margin-bottom: 5px;;
+}
+
+.SideMenu .navigation ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    row-gap: 5px;
+    padding: 15px 0;
+}
+
+.SideMenu .navigation ul li {
+    width: 100%;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.SideMenu .navigation ul li .nav-link, .SideMenu .btn-logout {
+    width: 100%;
+    padding: 6px 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 9px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: transparent;
+    color: white;
+}
+
+.SideMenu .navigation ul li .nav-link:hover > *{
+    color: rgb(203, 203, 222);
+}
+
+.SideMenu .navigation ul li .nav-link.active {
+    background-color: white;
+    color: rgba(73, 73, 73, 1);
+}
+
+.SideMenu .navigation ul li .nav-link.active:hover > * {
+    color: rgb(73, 73, 73);
+}
+
+.SideMenu .sidemenu-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+.SideMenu .navigation ul li span {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.SideMenu .btn-logout {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'poppins', sans-serif;
+    padding: 6px 5px;
+    border: none;
+    
+}
+
+.SideMenu .btn-logout:hover {
+    color: rgb(255, 212, 132);
+}
+
+/* ---------- Admin Content ----------- */
+
+.AdminContent {
+    width: calc(100% - 175px);
+    position: relative;
+    top: 38px;
+    left: 175px;
+    padding: 5px;
+}
+
+.AdminContent * .page-title {
+    font-size: 20px;
+    text-align: start;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.AdminContent .table-holder {
+    margin: 5px;
+    height: calc(100vh - 95px);
+    max-height: fit-content;
+    overflow: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.AdminContent .table-holder .table-top {
+    display: flex;
+    height: 55px;
+    padding: 15px 15px;
+    align-items: center;
+    justify-content: start;
+    gap: 70px;
+    border-bottom: 1px solid #DADEE1;
+    background: #FFF;
+    position: sticky;
+    top: 0;
+
+}
+
+.AdminContent .table-holder .table-top .search-tf-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.AdminContent .table-holder .table-top .search-tf-holder input {
+    display: block;
+    height: 24px;
+    width: 160px;
+    padding-left: 10px;
+    font-family: 'poppins', sans-serif;
+    border-radius: 5px;
+    font-size: 13px;
+    border: 1px solid #C1C6CF;
+    outline: none;
+    color: rgb(94, 94, 94);
+}
+
+.table-footer-holder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
+    background-color: transparent;
+}
+
+
+.AdminContent .table-holder .table-footer {
+    position: sticky;
+    background-color: white;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 20px;
+    column-gap: 5px;
+    border-top: 1px solid #bec3c6;
+}
+
+.AdminComponent .table-footer-holder .table-footer .btn-nav {
+    font-size: 11px;
+    color: #797979;
+    padding: 4px 9px;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-family: 'poppins', sans-serif;
+    background-color: #3242D3;
+    color: white;
+}
+
+.AdminComponent .table-holder .table-footer .btn-nav:hover {
+    background-color: #3242D3;
+    color: white;
+}
+
+.AdminComponent .table-holder .table-footer .btn-nav:active {
+    transform: translateY(1px);
+}
+
+.AdminContent .btn-search {
+    width: fit-content;
+    padding: 0 15px;
+    font-size: 12px;
+    color: white;
+    background-color: var(--clr-orange);
+    display: block;
+    height: 26px;
+}
+
+.AdminContent .btn-search:hover {
+    border: none;
+}
+
+.AdminContent .table-holder table thead {
+    background-color: #f1f1f1;
+    position: sticky;
+    top: 55px;
+    background: var(--clr-bg);
+}
+
+.AdminContent .table-holder table tr td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.AdminContent .table-holder table thead tr th {
+    font-weight: 600;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.AdminContent .table-holder table tbody tr td {
+    padding: 10px 30px;
+}
+
+.AdminContent .table-holder table  tbody tr .btn {
+    padding: 3px 15px;
+    font-size: 11px;
+    color: white;
+    display: block;
+    height: 24px;
+    width: fit-content;
+}
+
+.AdminContent .table-holder .btn {
+    padding: 3px 15px;
+    font-size: 11px;
+    color: white;
+    display: block;
+    height: 24px;
+    width: fit-content;
+}
+
+.AdminContent .table-holder .btn-green {
+    background-color: green;
+}
+
+.AdminContent .table-holder .btn-grey {
+    border: 1.5px solid #444;
+    color: red !important;
+    background-color: transparent;
+    font-weight: 500;
+    color: #444 !important;
+
+}
+
+.btn-green:hover {
+    border: none;
+}
+
+.btn-red-border {
+    color: var(--clr-red) !important;
+    background-color: transparent;
+    width: fit-content;
+    transform-origin: 50% 50%;
+}
+
+.AdminContent .btn:active {
+    scale: 1.04;
+}
+
+/* ----------------- Order Items table ------------- */
+
+.OrderItem {
+    width: calc(100% - 175px);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.OrderItem .content {
+    width: fit-content;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 8px 36px 12px rgba(46, 55, 68, 0.274);
+    border-radius: 5px;
+    border: 1px solid #DADEE1;
+}
+
+.OrderItem h1 {
+    font-size: 15px;
+    font-weight:600;
+    padding: 8px 10px;
+    border-bottom: 1px solid #DADEE1;
+    text-align: start;
+    color: #1D1D1D;
+    margin-bottom: 10px;
+}
+
+.OrderItem .user-details-holder {
+    padding: 0px 15px;
+}
+
+.OrderItem .user-details {
+    padding: 8px 10px;
+    text-align: start;
+    border-top: 1px solid #DADEE1;
+}
+
+.OrderItem .user-details h4 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.OrderItem .user-details p{
+    font-size: 11px;
+    color: var(--clr-black);
+    font-weight: 400;
+    margin-bottom: 2px;
+    color: #1D1D1D;
+}
+
+.OrderItem h3{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 0px;
+    text-align: start;
+    color: rgb(69, 69, 69);
+    margin-bottom: 5px;
+}
+
+.OrderItem .order-table-holder {
+    max-height: 160px;
+    overflow: scroll;
+    position: relative;
+    border: 1px solid #DADEE1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.OrderItem table {
+    border-collapse: collapse;
+    position: relative;
+    border-radius: 5px;    
+}
+
+.OrderItem table thead {
+    border-bottom: 1px solid #DADEE1;
+    position: sticky;
+    top: 0;
+}
+
+.OrderItem table thead tr{
+    background-color: #60667d;
+    color: white;;
+}
+
+.OrderItem table thead tr th {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 30px;
+}
+
+.OrderItem table tbody tr td {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 10px 30px;
+    color: #1D1D1D;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.OrderItem .btn-holder {
+    padding: 15px 20px;
+}
+
+.OrderItem .btn-close {
+    display: block;
+    margin-left: auto;
+    padding: 3px 10px;
+    width: fit-content;
+    background-color: red;
+}
+
+/* ------------ Admin Profile ---------- */
+
+.AdminAccount {
+    padding: 5px;
+}
+
+.AdminAccount .page-title {
+    margin-bottom: 5px;
+}
+
+.admin-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    border: none;
+}
+
+.admin-details-wrapper .profile-holder {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 60px;
+    padding: 20px 0;
+}
+
+.admin-details-wrapper .profile-holder .img-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.admin-details-wrapper .profile-holder .img-holder .img {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #192655;
+    font-size: 40px;
+    color: white;
+    border-radius: 50%;
+}
+
+.admin-details-wrapper .profile-holder .profile-overview {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+} 
+
+.admin-details-wrapper .profile-holder .profile-overview h2 {
+    font-size: 24px;
+    color: #1D1D1D;
+    font-weight: 600;
+}
+
+.admin-details-wrapper .profile-holder .profile-overview .mail {
+    color: #058ED8;
+    font-size: 12px;
+}
+
+.admin-details-wrapper .profile-holder .profile-overview p {
+    color: #868992;
+    font-size: 12px;
+}
+
+.admin-details-wrapper h3 {
+    font-size: 16px;
+    color: #3E3E3E;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: start;
+}
+
+.admin-details-wrapper .account-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 15px 0;
+    row-gap: 6px;
+}
+
+.admin-details-wrapper .account-details .form-element {
+    display: flex;
+    column-gap: 10px;
+    height: 35px;
+}
+
+.admin-details-wrapper .account-details .form-element label {
+    width: 180px;
+    font-size: 13px;
+    color: #6C747D;
+    text-align: start;
+}
+
+.admin-details-wrapper .account-details .form-element input {
+    width: 300px;
+    height: 24px;
+    padding: 0 10px;
+    border: 1px solid #C9CED3;
+    border-radius: 5px;
+    background: white;
+    font-size: 12px;
+    font-family: 'poppins', sans-serif;
+    color: #6C747D;
+}
+
+.admin-details-wrapper .btn {
+    padding: 3px 10px;
+    width: fit-content;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
