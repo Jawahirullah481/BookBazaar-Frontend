@@ -10,7 +10,7 @@ const BookCard = ({ book }) => {
             </div>
             <Rating rating={book.rating} />
             <h1 className="book-title">{book.bookName}</h1>
-            <p className="author">{book.authors.toString()}</p>
+            <p className="author">{book.authors?.toString()}</p>
             <div className="book-price">
                 <p>
                     <span className="rupee-symbol">₹</span>

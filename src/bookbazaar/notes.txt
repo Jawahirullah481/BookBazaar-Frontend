@@ -43,12 +43,30 @@ https://books.google.com/books/publisher/content/images/frontcover/\(bookImgId)?
 =====================
 Home Page :
 ==========
-1. /books
-2. /books?searchQuery=<searchQuery>
-3. /books?searchQuery=<searchQuery>&author=<author>&category=<category>
+1. /books 			  -> To get all books in the db.
+2. /books/search?q=<Search-Query> -> Search Text
+
 
 ## User API URLs :
 ==================
+1. /users/{userid}/books/{isbn}            -> Get User Book Information && /books/view/{isbn}
+2. /users/{userid}/favourites      	   -> Get All Books in the favourite
+3. /users/{userid}/favourites/{isbn} - PUT -> Add to Favourite
+4. /users/{userid}/favourites/{isbn} - DEL -> Delete from favourite
+5. /users/{userid}/cart		           -> Get Items in the cart
+6. /users/{userid}/cart/{isbn}       - PUT -> add item into the cart
+7. /users/{userid}/cart/{isbn}	     - DEL -> Delete Bbook from cart
+8. /users/{userid}/cart/{isbn}/quantity- PUT->set cart item quantity to cart
+9. /users/{userid}/orders	           -> Get All orders
+10./users/{userid}/buy		      - POST-> 
+11./users/{userid}/buy/cart	      - POST-> Buy books from cart
+12./users/{userid}/userdetails	            -> Get userdetails information
+13./users/{userid}/userdetails	      - PUT -> Edit details of user 
+14./users/login                       - POST-> login user
+15./users/signup                      - POST -> Signup user
+
+## Admin API URLs : 
+===================
 
 
 
@@ -56,19 +74,7 @@ Home Page :
 Changes in REST API :
 ==================
 1. If quantity in cart greater than book stock, then reduce the cart quantity to book stock quantity.
-2. Change is mobileNo to phone, and passwordSize to be removed.
 
-"@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-regular-svg-icons": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
-    "react-router-dom": "^6.20.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+
+http://books.google.com/books/content?id=v1jvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
+http://books.google.com/books/content?id=hEGjDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api

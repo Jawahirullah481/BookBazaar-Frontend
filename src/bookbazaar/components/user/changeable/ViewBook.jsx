@@ -1,45 +1,147 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getBookByIsbn } from './../../api/BooksApiService';
 import Rating from "./subcomponents/Rating";
 import ErrorComponent from "./subcomponents/ErrorComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartBorder } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../security/AuthContext";
+import { addBookToCart, addBookToFavourite, getUserBookByIsbn, removeBookFromFavourite } from "../../api/UsersApiService";
+import Popup from "../../Popup";
 
 
 const ViewBook = () => {
 
-    const { searchQuery } = useParams();
+    const { isbn } = useParams();
     const [bookInfo, setBookInfo] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
+    const auth = useAuth();
+    const [popup, setPopup] = useState(null);
+    const navigate = useNavigate();
+    
 
-    useEffect(() => {
-        // getBookByIsbn(1, searchQuery)
-        //     .then(response => response.json())
-        //     .then(data => setBookInfo(data))
-        //     .catch(error => {
-        //         console.log("Error while reading book information", error);
-        //     });
-        setBookInfo(getBookByIsbn(1, searchQuery))
-    }, [searchQuery]);
+    function addToFavourite() {
+        if (!auth.isLoggedIn) {
+            navigate("/login", { state: { path: `/view-book/${isbn}` } });
+            return;
+        }
 
-    function buyBook() {
+        // Create a copy of the current state
+        let bookInfoTemp = { ...bookInfo, inFavourite: !bookInfo.inFavourite };
+
+        // Update the state with the new bookInfo
+        setBookInfo(bookInfoTemp);
+
+        // Make the API call based on the updated state
+        const apiCall = bookInfo.inFavourite
+            ? removeBookFromFavourite(auth.user.id, bookInfo.book.isbn)
+            : addBookToFavourite(auth.user.id, bookInfo.book.isbn);
+
+        // Perform the API call
+        apiCall
+            .then((response) => {
+                if (response.status === 200) {
+                    setPopup({
+                        type: "success",
+                        message: bookInfo.inFavourite
+                            ? "Book removed from Favourite"
+                            : "Book added to Favourite",
+                    });
+                } else {
+                    setPopup({
+                        type: "error",
+                        message: bookInfo.inFavourite
+                            ? "Denied to remove from Favourite"
+                            : "Denied to add to Favourite",
+                    });
+
+                    // Revert the state if the API call fails
+                    bookInfoTemp = { ...bookInfo, inFavourite: !bookInfo.inFavourite };
+                    setBookInfo(bookInfoTemp);
+                }
+            })
+            .catch((error) => {
+                console.error("Error in API call:", error);
+            });
+    }
+
+
+    function addToCart() {
+
+        if (!auth.isLoggedIn) {
+            navigate("/login", { state: { path: `/view-book/${isbn}` } });
+            return;
+        }
+
+        // Create a copy of the current state
+        let bookInfoTemp = { ...bookInfo, inCart: true };
+
+        // Update the state with the new bookInfo
+        setBookInfo(bookInfoTemp);
+
+        // Make the API call based on the updated state
+        const apiCall = addBookToCart(auth.user.id, bookInfo.book.isbn)
+
+        // Perform the API call
+        apiCall
+            .then((response) => {
+                if (response.status === 200) {
+                    setPopup({
+                        type: "success",
+                        message: "Book Added to cart"
+                    });
+                } else {
+                    setPopup({
+                        type: "error",
+                        message: "Error while remove book from Favourite"
+                    });
+
+                    // Revert the state if the API call fails
+                    bookInfoTemp = { ...bookInfo, inCart: false };
+                    setBookInfo(bookInfoTemp);
+                }
+            })
+            .catch((error) => {
+                console.error("Error in API call:", error);
+            });
 
     }
 
+
+    function buyBook(isbn) {
+        navigate(`/buy/${isbn}`);
+    }
+
+
+    useEffect(() => {
+
+        console.log("Use Effect is running")
+
+        if (auth.isLoggedIn) {
+            getUserBookByIsbn(auth.user.id, isbn)
+                .then(response => setBookInfo(response.data))
+                .catch(error => console.log("Error", error));
+        } else {
+            getBookByIsbn(isbn)
+                .then(response => setBookInfo(response.data))
+                .catch(error => console.log("Error", error));
+        }
+
+    }, [isbn, auth.user]);
+
     return (
         <div className="ViewBook">
-            {
-                console.log("ViewBook render")
-            }
+            {popup && <Popup popupData={popup} />}
             <h1>Book Details</h1>
 
             {errorMsg && <ErrorComponent msg={errorMsg} />}
-            {!errorMsg && bookInfo &&
+            {bookInfo &&
                 <div className="book-details-holder">
                     <div className="book-image">
-                        <Favourite inFavourite={bookInfo.inFavourite} isbn={bookInfo.book.isbn}/>
+                        <div className="heart-icon-holder" onClick={addToFavourite}>
+                            {bookInfo.inFavourite ? <FontAwesomeIcon icon={faHeart} style={{ color: "#ff0000", }} className="heart-icon" /> : <FontAwesomeIcon icon={faHeartBorder} className="heart-icon" />}
+                        </div>
                         <img src={bookInfo.book.imageUrl} alt="" />
                     </div>
                     <div className="book-details">
@@ -52,8 +154,8 @@ const ViewBook = () => {
                         </h3>
                         <Rating rating={bookInfo.book.rating} />
                         <p className="stock">{bookInfo.stock ? (bookInfo.stock + " stocks left") : "Stock Not Available"}</p>
-                        <button className="btn btn-red" onClick={() => buyBook(bookInfo.book.isbn)}>Buy Book</button>
-                        <ButtonAddToCart inCart={bookInfo.inCart} isbn={bookInfo.book.isbn} />
+                        <button className="btn btn-red" onClick={() => buyBook(bookInfo.book.isbn)} disabled={bookInfo.stock == 0}>Buy Book</button>
+                        <button className="btn btn-orange" onClick={addToCart} disabled={bookInfo.inCart}>{bookInfo.inCart ? "Added to Cart" : "Add to Cart"}</button>
                     </div>
                 </div>
             }
@@ -63,44 +165,3 @@ const ViewBook = () => {
 }
 
 export default ViewBook;
-
-
-
-const Favourite = ({inFavourite, isbn}) => {
-
-    const [isInFavourite, setIsInFavourite] = useState(inFavourite);
-
-    function addToFavourite() {
-        setIsInFavourite(!isInFavourite);
-    }
-
-    return (
-        <div className="heart-icon-holder" onClick={addToFavourite}>
-            {
-                isInFavourite ? <FontAwesomeIcon icon={faHeart} style={{ color: "#ff0000", }} className="heart-icon" /> : <FontAwesomeIcon icon={faHeartBorder} className="heart-icon" />
-            }
-        </div>
-    )
-}
-
-
-
-const ButtonAddToCart = ({inCart, isbn}) => {
-
-    const [cartButtonClass, setCartButtonClass] = useState('btn btn-orange btn-m');
-
-    const [isInCart, setIsInCart] = useState(inCart);
-
-    function addToCart() {
-        setIsInCart(!isInCart);
-        if (isInCart)
-            setCartButtonClass('btn btn-orange');
-        else
-            setCartButtonClass('btn btn-orange btn-disabled');
-    }
-
-    return(
-        <button className={cartButtonClass} onClick={addToCart} disabled={isInCart}>{isInCart ? "Added to Cart" : "Add to Cart"}</button>
-    )
-
-}

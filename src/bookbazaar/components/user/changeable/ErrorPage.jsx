@@ -1,6 +1,13 @@
+import { NavLink } from "react-router-dom";
+import errorImage from "../../../assets/404.png"
+
 const ErrorPage = () => {
+
     return ( 
-        <div>Error Page</div>
+        <div className="ErrorPage">
+            <img src={errorImage} alt="" />
+            <NavLink className="btn btn-red" to="/home">Go to Home</NavLink>
+        </div>
      );
 }
  

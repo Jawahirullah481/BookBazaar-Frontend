@@ -8,10 +8,8 @@ export const useAuth = () => useContext(AuthContext);
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [userid, setUserid] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
-    const [token, setToken] = useState(null);
 
 
     useEffect(() => {
@@ -23,27 +21,26 @@ const AuthProvider = ({ children }) => {
 
 
     const login = (userDetails, passwordValue) => {
-        sessionStorage.setItem(`token`, ("Basic " + window.btoa(userDetails.username + ":" + passwordValue)));
-        setUserid(userid);
-        setUser({...userDetails, password: passwordValue});
+        localStorage.setItem(`token-${userDetails.id}`, ("Basic " + window.btoa(userDetails.username + ":" + passwordValue)));
+        setUser((oldValue) => {
+            return { ...userDetails, password: passwordValue }
+        });
     };
 
     const addAuthorization = () => {
         apiClient.interceptors.request.use(config => {
             // Use the latest value of the username and password
-            if (user) {
-                console.log(`Username : ${user.username}, Token : ${sessionStorage.getItem(`token`)}`)
-                config.headers.Authorization = sessionStorage.getItem(`token`);
-            }
+            console.log("User id is : ", localStorage.getItem(`token-${user.id}`))
+            // if (user) {
+                config.headers.Authorization = localStorage.getItem(`token-${user.id}`);
+            // }
             return config;
         });
-
-
     }
 
 
     const changeCredentials = (usernameValue, emailValue, passwordValue) => {
-        sessionStorage.setItem(`token`, ("Basic " + window.btoa(usernameValue + ":" + passwordValue)));
+        localStorage.setItem(`token-${user.id}`, ("Basic " + window.btoa(usernameValue + ":" + passwordValue)));
         setUser((oldValue) => {
             return { ...oldValue, username: usernameValue, email: emailValue, password: passwordValue }
         });
@@ -51,9 +48,8 @@ const AuthProvider = ({ children }) => {
 
     const logout = () => {
 
-        console.log("I am called ")
         const role = user.role;
-        sessionStorage.removeItem(`token`);
+        localStorage.removeItem(`token-${user.id}`);
         setUser(null);
         setIsLoggedIn(false);
         

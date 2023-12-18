@@ -1,32 +1,111 @@
 import { useEffect, useState } from "react";
-import { getUserDetails } from "../../api/UsersApiService";
+import { getUserDetails, updateUserDetails } from "../../api/UsersApiService";
+import { useAuth } from "../../security/AuthContext";
+import Popup from "../../Popup";
 
 const Profile = () => {
 
     const [userDetails, setUserDetails] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
+    const auth = useAuth();
+    const [popup, setPopup] = useState(null);
 
     useEffect(() => {
-
-        // GEt data from api
-        setUserDetails(getUserDetails(1));
-
+        populateUserDetails()
     }, [])
 
-    function editUserDetails() {
-        // update data
-        console.log(userDetails)
+    function populateUserDetails() {
+        getUserDetails(auth.user.id)
+            .then(response => {
+                console.log(response.data)
+                let userDetailsResponse = { ...response.data, password: auth.user.password };
+                setUserDetails(userDetailsResponse);
+            })
+            .catch(error => console.log("Error while retreiving data", error));
     }
+
+
+    /* ------------------------ */
+
+
+    function validateUserDetails(user) {
+
+        console.log("User object in validation : ", JSON.stringify(user))
+
+        // Checking for 0 length
+        for (const property in user) {
+            if (user.hasOwnProperty(property)) {
+                if (typeof user[property] === 'object' && user[property] !== null) {
+                    // If the property is an object, recursively call the function
+                    if (!validateUserDetails(user[property])) {
+                        return false;
+                    }
+                }
+                if (!user[property]) {
+                    setErrorMsg(`${property} cannot be empty`);
+                    return false;
+                }
+            }
+        }
+
+        // Checking for username and password length
+        if (userDetails.username.length < 3) {
+            setErrorMsg("Username must be 3 characters length");
+            return false;
+        }
+        if (userDetails.password.length < 5) {
+            setErrorMsg("Password must be 5 characters length");
+            return false;
+        }
+        if (userDetails.address.pin.length < 6) {
+            setErrorMsg("Invalid PIN");
+            return false;
+        }
+        if (userDetails.address.mobile.length < 10) {
+            setErrorMsg("Invalid mobile number");
+            return false;
+        }
+
+        return true;
+    }
+
+    function editUserDetails() {
+        if (validateUserDetails(userDetails)) {
+            // Continue with other asynchronous operations (e.g., updateUserDetails)
+            console.log("User Details when submit : " + userDetails)
+            updateUserDetails(auth.user.id, userDetails)
+                .then(response => {
+                    console.log("Response is ", response);
+                    if (response.status === 200) {
+                        setPopup({ type: "success", message: "User details successfully updated" });
+                        auth.changeCredentials(userDetails.username, userDetails.email, userDetails.password);
+                        setErrorMsg("")
+                    } else {
+                        setPopup({ type: "error", message: "Error while updating user details" });
+                        populateUserDetails();
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                    console.error("Error during updateUserDetails:", error.response);
+                    setErrorMsg(error.response.data.debugMessage);
+                    setPopup({ type: "error", message: "Error while udpating user details" });
+                });
+        } else {
+            console.log("Validation failed");
+        }
+    }
+
+
 
     return (
         <div className="Profile">
-            <h1>
-                Your Profile
-            </h1>
+            {popup && <Popup popupData={popup} />}
+            <h1>Your Profile</h1>
             {
                 userDetails &&
                 <div className="profile-holder">
-                    {errorMsg && <div className="error-msg">{errorMsg}</div> }
+                    {errorMsg && <div className="error-msg">{errorMsg}</div>}
                     <div className="account-holder">
                         <div className="profile-img-holder">
                             <div className="profile-img">{userDetails.username.substring(0, 2).toUpperCase()}</div>
@@ -73,40 +152,47 @@ const TextField = ({ type, property, userDetails, updateUser, classes }) => {
                 setPropertyValue(userDetails.password);
             }; break;
             case "address": {
-                setPropertyValue(userDetails.address.address);
+                setPropertyValue(userDetails.address?.address || "");
             }; break;
             case "city": {
-                setPropertyValue(userDetails.address.city);
+                setPropertyValue(userDetails.address?.city || "");
             }; break;
             case "state": {
-                setPropertyValue(userDetails.address.state);
+                setPropertyValue(userDetails.address?.state || "");
             }; break;
             case "country": {
-                setPropertyValue(userDetails.address.country);
+                setPropertyValue(userDetails.address?.country || "");
             }; break;
             case "pin": {
-                setPropertyValue(userDetails.address.pin);
+                setPropertyValue(userDetails.address?.pin || "");
             }; break;
             case "landmark": {
-                setPropertyValue(userDetails.address.landmark);
+                setPropertyValue(userDetails.address?.landmark || "");
             }; break;
             case "mobile": {
-                setPropertyValue(userDetails.address.mobile);
+                setPropertyValue(userDetails.address?.mobile || "");
             }; break;
         }
     });
 
     function handleOnChange(event, key) {
 
+
         let updatedUser = null;
 
         switch (key) {
             case "username": {
-                updatedUser = { ...userDetails, username: event.target.value };
+                updatedUser = { ...userDetails, username: (() => {
+                    let username = event.target.value;
+                    if(/\d/.test(username)) {
+                        return userDetails.username;
+                    }
+                    return username;
+                })() };
             }; break;
             case "email": {
-                updatedUser = { ...userDetails, email: event.target.value };
-            }; break;
+                return;
+            };
             case "password": {
                 updatedUser = { ...userDetails, password: event.target.value };
             }; break;
@@ -151,7 +237,12 @@ const TextField = ({ type, property, userDetails, updateUser, classes }) => {
                     ...userDetails,
                     address: {
                         ...userDetails.address,
-                        pin: event.target.value
+                        pin: (() => {
+                            let pin = event.target.value;
+                            if (isNaN(pin) || pin.length > 6)
+                                return userDetails.address.pin;
+                            return pin;
+                        })()
                     }
                 }
             }; break;
@@ -169,14 +260,19 @@ const TextField = ({ type, property, userDetails, updateUser, classes }) => {
                     ...userDetails,
                     address: {
                         ...userDetails.address,
-                        mobile: event.target.value
+                        mobile: (() => {
+                            let mobile = event.target.value;
+                            if (isNaN(mobile) || mobile.length > 10)
+                                return userDetails.address.mobile;
+                            return mobile;
+                        })()
                     }
                 }
             }; break;
         }
 
         updateUser(updatedUser);
-        updatedUser = null;
+        console.log(updatedUser)
         setPropertyValue(event.target.value);
     }
 

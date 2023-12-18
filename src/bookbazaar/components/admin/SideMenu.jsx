@@ -1,8 +1,11 @@
 import { faArrowRightFromBracket, faBook, faCubesStacked, faGear, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../security/AuthContext";
 
 const SideMenu = () => {
+
+    const auth = useAuth();
 
     return (
         <div className="SideMenu">
@@ -35,7 +38,7 @@ const SideMenu = () => {
                     </li>
                 </ul>
             </div>
-            <button className="btn-logout"><FontAwesomeIcon icon={faArrowRightFromBracket} className="sidemenu-icon" />Logout</button>
+            <button className="btn-logout" onClick={auth.logout}><FontAwesomeIcon icon={faArrowRightFromBracket} className="sidemenu-icon"/>Logout</button>
         </div>
     );
 }

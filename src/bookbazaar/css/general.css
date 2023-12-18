@@ -32,6 +32,7 @@ body {
     outline: 0;
     border-radius: 5px;
     font-family: 'poppins', sans-serif;
+    cursor: pointer;
 }
 
 .btn-black {
@@ -46,17 +47,12 @@ body {
     background-color: var(--clr-red);
 }
 
+.btn-blue {
+    background-color: #3242D3;
+}
+
 .btn-green {
     background-color: green;
-}
-
-.btn:disabled {
-    cursor: no-drop;
-}
-
-.btn-orange-disabled:hover {
-    text-decoration: none;
-    border: none;
 }
 
 .btn-red:hover {
@@ -73,6 +69,79 @@ body {
 .btn-border-black:hover {
     border: 2px solid black;
 }
+
+/* ------------ Popup ------------------- */
+
+.Popup {
+    width: max-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border-left: 8px solid #1D1D1D;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    z-index: 1;
+    padding: 0 50px 0 0;
+}
+
+.Popup.green {
+    border-color: #14A44D;
+}
+
+.Popup[type="success"] {
+    border-color: #14A44D;
+}
+
+.Popup[type="error"] {
+    border-color: red;
+}
+
+.Popup .content-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.Popup .content-holder h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1D1D1D;
+    text-align: start;
+    line-height: 120%;
+}
+
+.Popup .content-holder p {
+    color: rgb(110, 114, 127);
+    font-size: 13px;
+    text-align: start;
+}
+
+.Popup .popup-icon-holder {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Popup .popup-icon-holder .icon-success {
+    width: 50px;
+}
+
+.Popup .icon-success {
+    color: #14A44D;
+}
+
+.Popup .icon-failed {
+    color: red;
+}
+
 
 /* ----------Header Component ------------ */
 
@@ -205,6 +274,7 @@ body {
 .UserContent {
     margin-top: 75px;
     width: 100vw;
+    min-height: calc(100vh - 80px);
     height: auto;
     padding: 0 20px 20px 20px;
 }
@@ -416,10 +486,14 @@ body {
 
 .ViewBook .book-details-holder .book-image {
     width: fit-content;
+    min-width: 175px;
     height: 285px;
     position: relative;
     border-radius: 5px;
     overflow: hidden;
+    background-image: url("https://islandpress.org/sites/default/files/default_book_cover_2015.jpg");
+    background-size: contain;
+    border: 1px solid grey;
 }
 
 .ViewBook .book-details-holder .book-image img {
@@ -451,7 +525,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ViewBook .book-details-holder .book-details h2 {
@@ -459,6 +534,10 @@ body {
     font-weight: 600;
     line-height: 100%;
     color: #000;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ViewBook .book-details-holder .book-details .author {
@@ -479,6 +558,7 @@ body {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     margin-bottom: 5px;
+    min-height: 70px;
 }
 
 .ViewBook .book-details-holder .book-details .book-price {
@@ -619,6 +699,7 @@ body {
     width: 100%;
     font-family: 'poppins', sans-serif;
     font-weight: 400;
+    background-color: transparent;
 }
 
 .Profile .profile-holder .address-holder{
@@ -677,7 +758,7 @@ body {
 .Buy .invoice h1 {
     color: #2A2935;
     font-family: 'poppins', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -692,11 +773,13 @@ body {
 
 .Buy .invoice table tr *:first-child {
     width: 225px;
+    max-width: 225px;
+    padding-right: 15px;
 }
 
 .Buy .invoice table thead tr th, .Buy .invoice table tfoot tr td {
         color: #2A2935;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 500;
         font-family: 'poppins', sans-serif;
 }
@@ -707,7 +790,7 @@ body {
     font-size: 12px;
     display: block;
     padding: 10px 0;
-    min-height: 120px;
+    min-height: 140px;
     color: #2A2935;
 }
 
@@ -720,6 +803,92 @@ body {
 
 .Buy .invoice .btn {
     width: fit-content;
-    padding: 0px 25px;
+    padding: 3px 25px;
     display: block;
+    font-size: 14px;
+}
+
+.Buy .invoice .btn:hover {
+    scale: 1.015;
+}
+
+/* ----------- Empty Component ------------ */
+
+.EmptyComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 15px;
+    width: 100%;
+    height: 100%;
+    max-height: 70vh;
+    position: relative;
+    padding-top: 15px;
+}
+
+.EmptyComponent img {
+    height: 50vh;
+    max-height: 350px;
+    display: block;
+}
+
+.EmptyComponent h2 {
+    color: #6f6f6f;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.EmptyComponent .btn {
+    background-color: var(--clr-red);
+    color: white;
+    padding: 3px 10px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.EmptyComponent .btn:hover {
+    scale: 1.015;
+}
+
+/* -------------- Error Page ------------------ */
+
+.ErrorPage {
+    width: 100vw;
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.ErrorPage img{
+    display: block;
+    height: 60vh; 
+    width: auto;
+    margin-bottom: 25px;
+}
+
+.ErrorPage .btn-red {
+    padding: 3px 15px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.ErrorPage .btn-red:hover {
+    text-decoration: underline;
+}
+
+
+.btn:disabled {
+    cursor: no-drop;
+    background-color: #b9b9b9;
+    color: white;
+}
+
+.btn:disabled:hover {
+    text-decoration: none;
+    border: none;
+    scale: 1 !important;
+    box-shadow: none;
 }

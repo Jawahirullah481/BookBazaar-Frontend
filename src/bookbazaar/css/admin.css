@@ -8,6 +8,7 @@
 .AdminComponent {
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     position: relative;
 }
 
@@ -23,6 +24,11 @@
     height: fit-content;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
 /* -------------- Header ----------- */
 
 .AdminHeader {
@@ -36,6 +42,7 @@
     font-weight: 500;
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 1;
     background-color: white;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 20, 0.08), 0px 1px 2px 0px rgba(0, 0, 20, 0.08);
@@ -63,10 +70,11 @@
 .SideMenu .logo {
     font-family: 'Kavoon', serif;
     font-size: 20px;
-    margin-bottom: 5px;;
+    margin-bottom: 5px;
+    ;
 }
 
-.SideMenu .navigation ul{
+.SideMenu .navigation ul {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -83,7 +91,8 @@
     text-decoration: none;
 }
 
-.SideMenu .navigation ul li .nav-link, .SideMenu .btn-logout {
+.SideMenu .navigation ul li .nav-link,
+.SideMenu .btn-logout {
     width: 100%;
     padding: 6px 5px;
     display: flex;
@@ -96,7 +105,7 @@
     color: white;
 }
 
-.SideMenu .navigation ul li .nav-link:hover > *{
+.SideMenu .navigation ul li .nav-link:hover>* {
     color: rgb(203, 203, 222);
 }
 
@@ -105,7 +114,7 @@
     color: rgba(73, 73, 73, 1);
 }
 
-.SideMenu .navigation ul li .nav-link.active:hover > * {
+.SideMenu .navigation ul li .nav-link.active:hover>* {
     color: rgb(73, 73, 73);
 }
 
@@ -127,7 +136,7 @@
     font-family: 'poppins', sans-serif;
     padding: 6px 5px;
     border: none;
-    
+
 }
 
 .SideMenu .btn-logout:hover {
@@ -183,17 +192,56 @@
     column-gap: 5px;
 }
 
-.AdminContent .table-holder .table-top .search-tf-holder input {
+.AdminContent input {
     display: block;
-    height: 24px;
-    width: 160px;
-    padding-left: 10px;
     font-family: 'poppins', sans-serif;
     border-radius: 5px;
     font-size: 13px;
     border: 1px solid #C1C6CF;
     outline: none;
     color: rgb(94, 94, 94);
+}
+
+.AdminContent .table-holder .table-top .search-tf-holder input {
+    height: 24px;
+    width: 160px;
+    padding-left: 10px;
+}
+
+.AdminContent .table-holder table input {
+    width: 50px;
+    height: 24px;
+    text-align: center;
+}
+
+.AdminContent .table-holder .table-top .dropdown-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid red;
+    position: relative;
+}
+
+.AdminContent .table-holder .table-top .btn-filter {
+    display: block;
+    font-family: 'poppins', sans-serif;
+    border-radius: 5px;
+    font-size: 12px;
+    border: 1px solid #bec3c6;
+    outline: none;
+    width: 145px;
+    padding: 2px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    color: #1D1D1D;
+    margin-left: auto;
+    background-color: #c9ced398;
+}
+
+.AdminContent .table-holder .table-top .btn-filter:hover {
+    background-color: transparent;
 }
 
 .table-footer-holder {
@@ -233,13 +281,20 @@
     color: white;
 }
 
-.AdminComponent .table-holder .table-footer .btn-nav:hover {
-    background-color: #3242D3;
-    color: white;
-}
-
 .AdminComponent .table-holder .table-footer .btn-nav:active {
     transform: translateY(1px);
+}
+
+
+.AdminComponent .table-holder .table-footer .btn-nav:disabled {
+    border: 1px solid #b9b9b9;
+    background-color: transparent;
+    color: #b9b9b9;
+    cursor: no-drop;
+}
+
+.AdminComponent .table-holder .table-footer .btn-nav:disabled:active {
+    transform: translateY(0px);
 }
 
 .AdminContent .btn-search {
@@ -279,7 +334,7 @@
     padding: 10px 30px;
 }
 
-.AdminContent .table-holder table  tbody tr .btn {
+.AdminContent .table-holder table tbody tr .btn {
     padding: 3px 15px;
     font-size: 11px;
     color: white;
@@ -295,6 +350,13 @@
     display: block;
     height: 24px;
     width: fit-content;
+}
+
+.AdminContent .table-holder .btn-status {
+    width: 112px;
+    min-width: 112px;
+    height: 24px;
+    text-align: center;
 }
 
 .AdminContent .table-holder .btn-green {
@@ -322,7 +384,13 @@
 }
 
 .AdminContent .btn:active {
-    scale: 1.04;
+    scale: 1.025;
+}
+
+.AdminContent .btn:disabled {
+    cursor: no-drop;
+    background-color: #b9b9b9;
+    color: white;
 }
 
 /* ----------------- Order Items table ------------- */
@@ -352,7 +420,7 @@
 
 .OrderItem h1 {
     font-size: 15px;
-    font-weight:600;
+    font-weight: 600;
     padding: 8px 10px;
     border-bottom: 1px solid #DADEE1;
     text-align: start;
@@ -375,7 +443,7 @@
     font-weight: 600;
 }
 
-.OrderItem .user-details p{
+.OrderItem .user-details p {
     font-size: 11px;
     color: var(--clr-black);
     font-weight: 400;
@@ -383,7 +451,7 @@
     color: #1D1D1D;
 }
 
-.OrderItem h3{
+.OrderItem h3 {
     font-size: 12px;
     font-weight: 500;
     padding: 5px 0px;
@@ -404,7 +472,7 @@
 .OrderItem table {
     border-collapse: collapse;
     position: relative;
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 
 .OrderItem table thead {
@@ -413,9 +481,10 @@
     top: 0;
 }
 
-.OrderItem table thead tr{
+.OrderItem table thead tr {
     background-color: #60667d;
-    color: white;;
+    color: white;
+    ;
 }
 
 .OrderItem table thead tr th {
@@ -497,7 +566,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-} 
+}
 
 .admin-details-wrapper .profile-holder .profile-overview h2 {
     font-size: 24px;
@@ -508,6 +577,7 @@
 .admin-details-wrapper .profile-holder .profile-overview .mail {
     color: #058ED8;
     font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .admin-details-wrapper .profile-holder .profile-overview p {
@@ -562,4 +632,17 @@
     width: fit-content;
     margin-bottom: 15px;
     font-size: 13px;
+}
+
+.btn:disabled {
+    cursor: no-drop;
+    background-color: #b9b9b9;
+    color: white;
+}
+
+.btn:disabled:hover, .btn-nav:disabled:hover {
+    text-decoration: none;
+    border: none;
+    scale: 1;
+    box-shadow: none;
 }

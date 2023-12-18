@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./changeable/Home";
 import SearchBook from "./changeable/SearchBook";
 import ViewBook from "./changeable/ViewBook";
@@ -10,11 +10,12 @@ import ErrorPage from "./changeable/ErrorPage";
 import Authentication from "../security/Authentication";
 import Profile from "./changeable/Profile";
 
+
 const UserContent = () => {
     return (
         <div className="UserContent">
             <Routes>
-                <Route path="/" element={<Home />}></Route>
+                <Route path="/" element={<Navigate to="home" />}></Route>
                 <Route path="home" element={<Home />}></Route>
                 <Route path="search/:searchQuery" element={<SearchBook />}></Route>
                 <Route path="view-book/:isbn" element={<ViewBook />}></Route>
@@ -23,9 +24,9 @@ const UserContent = () => {
                     <Route path="orders" element={<Order />}></Route>
                     <Route path="favourites" element={<Favourite />}></Route>
                     <Route path="profile" element={<Profile />}></Route>
-                    <Route path="buy" element={<Buy />}></Route>
-                    <Route path="*" element={<ErrorPage />}></Route>
+                    <Route path="buy/:isbn?" element={<Buy />}></Route>
                 </Route>
+                <Route path="*" element={<ErrorPage />}></Route>
             </Routes>
         </div>
     );

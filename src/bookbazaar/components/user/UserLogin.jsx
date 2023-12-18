@@ -1,18 +1,25 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../security/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoMdLock } from "react-icons/io";
 import shoppingWebsiteImage from '../../assets/shoppingWebsite.png';
 import '../../css/form.css';
+import { loginUser } from "../api/UsersApiService";
+
 
 const UserLogin = () => {
 
     const auth = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    /*useEffect( ()=> {
-        auth.login("sklj", "slkfj");
-    }, []);*/
+    useEffect(() => {
+        if (auth.isLoggedIn) {
+            navigate("/home");
+        }
+    }, [auth.isLoggedIn]);
+
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +32,45 @@ const UserLogin = () => {
             case "username": setUsername(value); break;
             case "password": setPassword(value); break;
         }
+
+        setErrorMessage('');
     }
+
+    function handleSubmit() {
+        if (validateForm()) {
+            loginUser(username, password)
+                .then(response => {
+                    if (response.status == 200) {
+                        auth.login(response.data, password);
+                        navigate(location.state?.path || "/home")
+                    }
+                })
+                .catch(error => {
+                    setErrorMessage(error.response?.data.message)
+                })
+        }
+    }
+
+    function validateForm() {
+        if (username == '') {
+            setErrorMessage("Username cannot be empty");
+            return false;
+        }
+        if (username.length < 3) {
+            setErrorMessage("Username must contain atleast 3 characters");
+            return false;
+        }
+        if (password == '') {
+            setErrorMessage("Password cannot by empty");
+            return false;
+        }
+        if (password.length < 5) {
+            setErrorMessage("Password must contain atleast 5 characters");
+            return false;
+        }
+        return true;
+    }
+
 
     return (
         <div className="UserLogin">
@@ -50,7 +95,7 @@ const UserLogin = () => {
                     </div>
 
                     <div className="form-element-holder">
-                    { errorMessage && <div className="error-message">{errorMessage}</div> }
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
 
                         <div className="tf-holder">
                             <input type="text" onChange={(event) => handleInputChange(event, "username")} value={username} placeholder="username" />
@@ -67,7 +112,7 @@ const UserLogin = () => {
                     </div>
 
                     <div className="form-element-holder">
-                        <button className="btn w-100 btn-black">Login</button>
+                        <button className="btn w-100 btn-black" onClick={handleSubmit}>Login</button>
                         <Link to={"/signup"} className="btn btn-border w-100">Sign up</Link>
                         <Link to={"/home"} className="redirect-link">Continue Without Login</Link>
                     </div>

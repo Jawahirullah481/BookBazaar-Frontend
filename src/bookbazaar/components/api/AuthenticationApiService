@@ -1,3 +1,0 @@
-import { apiClient } from "./ApiClient"
-
-export const loginUser = (username, password) => apiClient.post("/users/login", {username, password});

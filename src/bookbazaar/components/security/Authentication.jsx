@@ -5,18 +5,17 @@ const Authentication = ({ authorization }) => {
 
     const auth = useAuth();
     const location = useLocation();
-    console.log(location.pathname)
 
-    // if (!auth.isLoggedIn) {
-    //     if (authorization.includes("USER"))
-    //         return <Navigate to={"/login"} state={ {path: location.pathname} }/>
-    //     else
-    //         return <Navigate to={"/admin/login"} state={ {path: location.pathname} } />
-    // }
+    if (!auth.isLoggedIn) {
+        if (authorization.includes("USER"))
+            return <Navigate to={"/login"} state={ {path: location.pathname} }/>
+        else
+            return <Navigate to={"/admin/login"} state={ {path: location.pathname} } />
+    }
 
-    // if (!(authorization.includes(auth.user.role))) {
-    //     return <Navigate to={"/admin/login"} />
-    // }
+    if (!(authorization.includes(auth.user.role))) {
+        return <Navigate to={"/admin/login"} />
+    }
 
     return (
         <Outlet />

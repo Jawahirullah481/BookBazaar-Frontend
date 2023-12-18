@@ -3,9 +3,23 @@ import { IoMdLock } from "react-icons/io";
 import '../../css/form.css';
 import '../../css/general.css';
 import '../../css/admin.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../security/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "../api/UsersApiService";
 
 const AdminLogin = () => {
+
+    const auth = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(auth.isLoggedIn && auth.user?.role == "ADMIN") {
+            navigate("/admin/books")
+        }
+    })
+
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +31,49 @@ const AdminLogin = () => {
             case "username": setUsername(value); break;
             case "password": setPassword(value); break;
         }
+
+        setErrorMessage("");
+    }
+
+
+    function handleSubmit() {
+        if(validateForm()) {
+            loginUser(username, password)
+            .then(response => {
+                if(response.status === 200) {
+                    const userInfo = response.data;
+                    if(userInfo.role == "ADMIN") {
+                        auth.login(userInfo, password);
+                        navigate(location.state?.path || "/admin/books");
+                    } else {
+                        setErrorMessage("Invalid loggin credentials");
+                    }
+                }
+            })
+            .catch(error => {
+                setErrorMessage(error.response?.data.message);
+            })
+        }
+    }
+
+    function validateForm() {
+        if (username == '') {
+            setErrorMessage("Username cannot be empty");
+            return false;
+        }
+        if (username.length < 3) {
+            setErrorMessage("Username must contain atleast 3 characters");
+            return false;
+        }
+        if (password == '') {
+            setErrorMessage("Password cannot by empty");
+            return false;
+        }
+        if (password.length < 5) {
+            setErrorMessage("Password must contain atleast 5 characters");
+            return false;
+        }
+        return true;
     }
 
     return ( 
@@ -45,7 +102,7 @@ const AdminLogin = () => {
                     </div>
 
                     <div className="form-element-holder">
-                        <button className="btn btn-black">Login</button>
+                        <button className="btn btn-black" onClick={handleSubmit}>Login</button>
                     </div>
                 </div>
             </div>

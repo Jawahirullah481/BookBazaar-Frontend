@@ -1,18 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import AdminContent from "./AdminContent";
-import SideMenu from "./SideMenu";
-import AdminHeader from "./AdminHeader";
+import AdminLogin from "./AdminLogin";
 
 const AdminComponent = () => {
-    return ( 
+    return (
         <div className="AdminComponent">
-            <AdminHeader />
-            <SideMenu />
             <Routes>
-                <Route path="*" element={ <AdminContent /> }></Route>
+                <Route path="login" element={<AdminLogin />}></Route>
+                <Route path="*" element={<AdminContent />}></Route>
             </Routes>
         </div>
-     );
+    );
 }
- 
+
 export default AdminComponent;

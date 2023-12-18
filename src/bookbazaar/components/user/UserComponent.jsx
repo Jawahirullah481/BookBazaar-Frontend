@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HeaderComponent from "./HeaderComponent";
 import UserContent from "./UserContent";
-import AuthProvider from "../security/AuthContext";
 
 const UserComponent = () => {
     return (

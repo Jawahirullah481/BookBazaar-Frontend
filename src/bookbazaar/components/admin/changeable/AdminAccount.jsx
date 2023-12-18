@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
-import { getUserDetails } from "../../api/UsersApiService";
+import { getUserDetails, updateUserDetails } from "../../api/UsersApiService";
+import { useAuth } from "../../security/AuthContext";
+import Popup from "../../Popup";
 
 const AdminAccount = () => {
 
+    const auth = useAuth();
+    const [popup, setPopup] = useState(null);
     const [adminDetails, setAdminDetails] = useState(null);
 
     useEffect(() => {
-        setAdminDetails(getUserDetails)
+        fetchAdminDetails();
     }, [])
+
+    function fetchAdminDetails() {
+        getUserDetails(auth.user.id)
+            .then(response => {
+                setAdminDetails({ ...response.data, password: auth.user.password })
+            })
+            .catch(error => {
+                setPopup({ type: "error", message: "Error while getting admin details" })
+            })
+    }
 
     function handleOnChange(event, property) {
 
         let updatedUser = null;
 
         switch (property) {
-            case "username": {
-                updatedUser = { ...adminDetails, username: event.target.value };
-            }; break;
-            case "email": {
-                updatedUser = { ...adminDetails, email: event.target.value };
-            }; break;
             case "password": {
                 updatedUser = { ...adminDetails, password: event.target.value };
             }; break;
@@ -29,11 +37,27 @@ const AdminAccount = () => {
     }
 
     function updateAdminDetails() {
-
+        if (adminDetails.password.length < 5) {
+            setPopup({ type: "error", message: "Password cannot be empty" });
+        }
+        else {
+            updateUserDetails(auth.user.id, adminDetails)
+                .then(response => {
+                    if (response.status == 200) {
+                        setPopup({ type: "success", message: "Admin Details updated successfully" });
+                        auth.changeCredentials(adminDetails.username, adminDetails.email, adminDetails.password);
+                    }
+                })
+                .catch(error => {
+                    setPopup({ type: "error", message: "Error while updating admin details" });
+                    fetchAdminDetails();
+                })
+        }
     }
 
     return (
         <div className="AdminAccount">
+            {popup && <Popup popupData={popup} />}
             <div className="page-title">Account</div>
             {adminDetails &&
                 <div className="admin-details-wrapper">
@@ -51,15 +75,15 @@ const AdminAccount = () => {
                     <div className="account-details">
                         <div className="form-element">
                             <label htmlFor="username">Username</label>
-                            <input type="text" name="username" value={adminDetails.username} onChange={(event) => handleOnChange(event, "username")} />
+                            <input type="text" name="username" value={adminDetails.username} />
                         </div>
                         <div className="form-element">
                             <label htmlFor="email">Email</label>
-                            <input type="text" name="email" value={adminDetails.email} onChange={(event) => handleOnChange(event, "email")} />
+                            <input type="text" name="email" value={adminDetails.email} />
                         </div>
                         <div className="form-element">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" value={adminDetails.password ? adminDetails.password : "lsdkfjslkfj"} onChange={(event) => handleOnChange(event, "password")} />
+                            <input type="password" name="password" value={adminDetails.password} onChange={(event) => handleOnChange(event, "password")} />
                         </div>
                         <div className="form-element">
                             <label htmlFor="username">Title</label>

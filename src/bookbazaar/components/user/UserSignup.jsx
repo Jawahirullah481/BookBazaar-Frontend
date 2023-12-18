@@ -3,10 +3,22 @@ import { IoMdLock } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import shoppingWebsiteImage from '../../assets/shoppingWebsite.png';
 import '../../css/form.css';
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { signupuser } from "../api/UsersApiService";
+import { useAuth } from "../security/AuthContext";
 
 const UserSignup = () => {
+
+    const auth = useAuth();
+    const location = useLocation();  
+    const navigate = useNavigate();  
+
+    useEffect(()=> { 
+        if(auth.isLoggedIn) {
+            navigate("/home");
+        }
+    }, [auth.isLoggedIn]);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -21,6 +33,58 @@ const UserSignup = () => {
             case "password": setPassword(value); break;
         }
     }
+
+    function handleSubmit() {
+
+        if(validateForm()) {
+            signupuser(username, email, password)
+            .then(response => {
+                if(response.status === 200) {
+                    auth.login(response.data, password);
+                    navigate(location.state?.path || "/home");
+                }
+            })
+            .catch(error => {
+                setErrorMessage(error.response.data.message);
+            })
+        }
+
+    }
+
+    function validateForm() {
+        if (username == '') {
+            setErrorMessage("Username cannot be empty");
+            return false;
+        }
+
+        if(username.length < 3) {
+            setErrorMessage("Username must contain atleast 3 characters");
+            return false;
+        }
+
+        if (email == '') {
+            setErrorMessage("Email cannot by empty");
+            return false;
+        }
+
+        if(!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
+            setErrorMessage("Enter valid Email");
+            return false;
+        }
+
+        if (password == '') {
+            setErrorMessage("Password cannot by empty");
+            return false;
+        }
+
+        if(password.length < 5) {
+            setErrorMessage("Password must contain atleast 5 characters");
+            return false;
+        }
+
+        return true;
+    }
+
 
     return (
         <div className="UserSignup">
@@ -68,7 +132,7 @@ const UserSignup = () => {
                     </div>
 
                     <div className="form-element-holder">
-                        <button className="btn w-100 btn-black">Sign up</button>
+                        <button className="btn w-100 btn-black" onClick={handleSubmit}>Sign up</button>
                         <Link to={"/login"} className="btn btn-border w-100">Log in</Link>
                         <Link to={"/home"} className="redirect-link">Continue Without Signup</Link>
                     </div>
