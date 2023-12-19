@@ -10,7 +10,6 @@ BookBazaar is an e-commerce website project build with Spring Boot backend and R
 - [Pages](#pages)
   - [User Pages](#user-pages)
   - [Admin Pages](#admin-pages)
--[Images](#images)
 
 ## Features
 
@@ -44,35 +43,56 @@ To run the project locally, follow these steps:
 
 2. **Cart:**
    - Manage your shopping cart.
+   
+![cart](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/23b21ba2-4486-44eb-8c79-616a7e654baf)
 
 3. **Orders:**
    - View your order history.
+   
+![orders](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/9e33ed70-d6f2-4a68-baf7-999b90e079b6)
 
 4. **Favourites:**
    - Manage your favorite books.
+   ![favourite](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/92ddfce1-fbfa-43d2-97a4-bf66c9b6b83c)
+
 
 5. **Book Details:**
    - Detailed information about a specific book.
+   
+![viewbook](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/fdff90c5-11bb-48c4-bf2e-192e035adf59)
 
 6. **Invoice Page:**
    - View order items and buy.
+   
 
 7. **Login, Logout, and Signup:**
    - User authentication.
+   ![login](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/84506cd0-b041-4691-93e2-133f9204a6eb)
+
 
 ### Admin Pages
 
 1. **Login:**
    - Admin authentication.
+   
+![adminlogin](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/a7a843f2-259d-4fb3-a185-d691c1fec8d0)
 
 2. **All Books:**
    - Manage all available books.
+   ![allbooks](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4891848c-113b-4954-87a5-83c85259bcd5)
+
 
 3. **All Users:**
    - View users details.
+   ![allusers](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/78892615-2c16-467b-84b1-c2c7bccc4614)
+
 
 4. **All Orders:**
    - View and manage all orders.
+   ![allorders](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4b93e685-b32b-47e6-9fce-b359cb552396)
 
-5. **Account Settings:**
+
+5. **Admin Account Settings:**
    - Update admin account details.
+   
+![adminaccount](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/0f720fa9-27ae-4897-94ef-9c1e2b9953f4)
