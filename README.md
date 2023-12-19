@@ -66,7 +66,8 @@ To run the project locally, follow these steps:
 
 6. **Invoice Page:**
    - View order items and buy.
-   
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/a59e7a64-cfbf-4811-be00-46b88e3bf89c" width="700" />
+
 
 7. **Login, Logout, and Signup:**
    - User authentication.
