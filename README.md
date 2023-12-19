@@ -1,4 +1,4 @@
-# BookBazaar-frontend
+![Screenshot 2023-12-19 111509](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/974112a7-51a4-4e19-8a3c-49a3491a722c)# BookBazaar-frontend
 
 BookBazaar is an e-commerce website project build with Spring Boot backend and React frontend. The backend communicates with the Google Books API to fetch book information, while the frontend provides user and admin interfaces. This is the fronted react application. Backend link is provided [here](https://github.com/Jawahirullah481/BookBazaar-Backend).
 
@@ -40,26 +40,29 @@ To run the project locally, follow these steps:
 
 1. **Home:**
    - Overview of available books.
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/774e0a17-d55b-401f-8762-ca29b3aa3cea" width="700" />
+
+
 
 2. **Cart:**
    - Manage your shopping cart.
-   
-![cart](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/23b21ba2-4486-44eb-8c79-616a7e654baf)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/23b21ba2-4486-44eb-8c79-616a7e654baf" width="700" />
+  
 
 3. **Orders:**
    - View your order history.
-   
-![orders](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/9e33ed70-d6f2-4a68-baf7-999b90e079b6)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/9e33ed70-d6f2-4a68-baf7-999b90e079b6" width="700" />
+  
 
 4. **Favourites:**
    - Manage your favorite books.
-   ![favourite](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/92ddfce1-fbfa-43d2-97a4-bf66c9b6b83c)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/92ddfce1-fbfa-43d2-97a4-bf66c9b6b83c" width="700" />
 
 
 5. **Book Details:**
    - Detailed information about a specific book.
-   
-![viewbook](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/fdff90c5-11bb-48c4-bf2e-192e035adf59)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/fdff90c5-11bb-48c4-bf2e-192e035adf59" width="700" />
+
 
 6. **Invoice Page:**
    - View order items and buy.
@@ -67,32 +70,36 @@ To run the project locally, follow these steps:
 
 7. **Login, Logout, and Signup:**
    - User authentication.
-   ![login](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/84506cd0-b041-4691-93e2-133f9204a6eb)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/84506cd0-b041-4691-93e2-133f9204a6eb" width="700" />
+
 
 
 ### Admin Pages
 
 1. **Login:**
    - Admin authentication.
-   
-![adminlogin](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/a7a843f2-259d-4fb3-a185-d691c1fec8d0)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/a7a843f2-259d-4fb3-a185-d691c1fec8d0" width="700" />
+
 
 2. **All Books:**
    - Manage all available books.
-   ![allbooks](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4891848c-113b-4954-87a5-83c85259bcd5)
+ <img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4891848c-113b-4954-87a5-83c85259bcd5" width="700" />
+
 
 
 3. **All Users:**
    - View users details.
-   ![allusers](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/78892615-2c16-467b-84b1-c2c7bccc4614)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/78892615-2c16-467b-84b1-c2c7bccc4614" width="700" />
+
 
 
 4. **All Orders:**
    - View and manage all orders.
-   ![allorders](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4b93e685-b32b-47e6-9fce-b359cb552396)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/4b93e685-b32b-47e6-9fce-b359cb552396" width="700" />
+
 
 
 5. **Admin Account Settings:**
    - Update admin account details.
-   
-![adminaccount](https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/0f720fa9-27ae-4897-94ef-9c1e2b9953f4)
+<img src="https://github.com/Jawahirullah481/BookBazaar-Frontend/assets/112153331/0f720fa9-27ae-4897-94ef-9c1e2b9953f4" width="700" />
+
