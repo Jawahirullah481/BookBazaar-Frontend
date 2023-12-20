@@ -199,6 +199,7 @@ body {
     align-items: center;
     justify-content: center;
     background: #6659FF;
+    cursor: pointer;
 }
 
 .HeaderComponent .search-bar .search-icon-holder .search-icon {

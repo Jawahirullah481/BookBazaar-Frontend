@@ -81,10 +81,6 @@ const AdminUsers = () => {
                             <input type="text" placeholder="Search User ID" value={searchUserId} onChange={(event) => handleOnSearchUserIdChange(event)} />
                             <button className="btn btn-orange btn-search" onClick={searchUserById}>Search</button>
                         </div>
-                        <div className="search-tf-holder">
-                            <input type="text" placeholder="Search Book Name" />
-                            <button className="btn btn-orange btn-search">Search</button>
-                        </div>
                     </div>
                     <table>
                         <thead className={tHeadClass}>

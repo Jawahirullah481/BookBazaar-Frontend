@@ -106,10 +106,6 @@ const AdminOrders = () => {
                             <input type="text" placeholder="Search Order ID" value={searchOrderId} onChange={(event) => handleOnSearchOrderIdChange(event)} />
                             <button className="btn btn-orange btn-search" onClick={searchOrderById}>Search</button>
                         </div>
-                        <div className="search-tf-holder">
-                            <input type="text" placeholder="Search Book Name" />
-                            <button className="btn btn-orange btn-search">Search</button>
-                        </div>
                         <button className="btn-filter" onClick={changeOrderType}>{ordersType}<FontAwesomeIcon icon={faRepeat} className="filter-icon" /></button>
                     </div>
                     <table>

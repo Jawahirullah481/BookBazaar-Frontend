@@ -90,10 +90,6 @@ const AdminBooks = () => {
                             <input type="text" placeholder="Search Book ISBN" value={searchBookIsbn} onChange={(event) => handleOnSearchBookIsbnChange(event)} />
                             <button className="btn btn-orange btn-search" onClick={searchBookByIsbn}>Search</button>
                         </div>
-                        <div className="search-tf-holder">
-                            <input type="text" placeholder="Search Book Name" />
-                            <button className="btn btn-orange btn-search">Search</button>
-                        </div>
                     </div>
                     <table>
                         <thead className={tHeadClass}>
